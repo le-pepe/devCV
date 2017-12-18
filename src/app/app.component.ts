@@ -9,15 +9,24 @@ declare let $: any;
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+
+  public loading = true;
+  type = 'CircleSimple';
+
   ngOnInit(): void {
-    /*======= Skillset *=======*/
-    $('.level-bar-inner').css('width', '0');
-    $('.level-bar-inner').each(function () {
-      const itemWidth = $(this).data('level');
-      $(this).animate({
-        width: itemWidth
-      }, 800);
-    });
+
+    setTimeout( () => {
+      this.loading = false;
+      setTimeout(() => {
+        $('.level-bar-inner').css('width', '0');
+        $('.level-bar-inner').each(function () {
+          const itemWidth = $(this).data('level');
+          $(this).animate({
+            width: itemWidth
+          }, 800);
+        }, 500);
+      })
+    }, 3000);
   }
 
 }
